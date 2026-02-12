@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Étudiant en Master Informatique</title>
+    <style>
+        :root {
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-brown-600-rgb: 94, 82, 64;
+            --color-teal-500-rgb: 33, 128, 141;
+            --color-gray-400-rgb: 119, 124, 124;
+            --color-teal-300-rgb: 50, 184, 198;
+            --color-gray-300-rgb: 167, 169, 169;
+            
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-charcoal-700);
+            --color-text-secondary: var(--color-slate-500);
+            --color-primary: var(--color-teal-500);
+            --color-primary-hover: var(--color-teal-600);
+            --color-primary-active: var(--color-teal-700);
+            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-background: var(--color-charcoal-700);
+                --color-surface: var(--color-charcoal-800);
+                --color-text: var(--color-gray-200);
+                --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+                --color-primary: var(--color-teal-300);
+                --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+                --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: var(--color-surface);
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--color-card-border);
+            margin-bottom: 40px;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-700));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 60px;
+            color: white;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            color: var(--color-text);
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: var(--color-text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-links a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            color: var(--color-primary-hover);
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: var(--color-text);
+            border-bottom: 3px solid var(--color-primary);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .about-content {
+            background: var(--color-surface);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--color-card-border);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: var(--color-surface);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--color-card-border);
+        }
+
+        .skill-category h3 {
+            color: var(--color-primary);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 8px 0;
+            color: var(--color-text);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .skill-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--color-surface);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--color-card-border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-700));
+            padding: 20px;
+            color: white;
+        }
+
+        .project-header h3 {
+            margin-bottom: 5px;
+            font-size: 22px;
+        }
+
+        .project-type {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .project-body {
+            padding: 20px;
+        }
+
+        .project-description {
+            margin-bottom: 15px;
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tech-tag {
+            background: rgba(var(--color-teal-500-rgb), 0.1);
+            color: var(--color-primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            border: 1px solid rgba(var(--color-teal-500-rgb), 0.3);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .tech-tag {
+                background: rgba(var(--color-teal-300-rgb), 0.15);
+                border-color: rgba(var(--color-teal-300-rgb), 0.3);
+            }
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--color-primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            background: var(--color-surface);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--color-card-border);
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -34px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            border: 3px solid var(--color-background);
+        }
+
+        .timeline-date {
+            color: var(--color-primary);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--color-text);
+        }
+
+        .timeline-subtitle {
+            color: var(--color-text-secondary);
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .timeline-description {
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-teal-700));
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            border-radius: 12px;
+            margin: 60px 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            border: none;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: var(--color-teal-700);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--color-text-secondary);
+            border-top: 1px solid var(--color-card-border);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section {
+                padding: 40px 20px;
+            }
+
+            .cta-section h2 {
+                font-size: 28px;
+            }
+        }
+
+        .editable {
+            cursor: text;
+            transition: background 0.2s ease;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        .editable:hover {
+            background: rgba(var(--color-teal-500-rgb), 0.05);
+        }
+
+        .edit-mode {
+            background: rgba(var(--color-teal-500-rgb), 0.1);
+            outline: 2px solid var(--color-primary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="profile-image">JD</div>
+            <h1 class="editable" contenteditable="true">Votre Nom</h1>
+            <p class="subtitle editable" contenteditable="true">Étudiant en Master Informatique - Spécialisation Compilation & Développement</p>
+            <div class="contact-links">
+                <a href="mailto:votre.email@example.com" class="editable" contenteditable="true">📧 votre.email@example.com</a>
+                <a href="tel:+33612345678" class="editable" contenteditable="true">📱 +33 6 12 34 56 78</a>
+                <a href="https://github.com/votre-username" target="_blank" class="editable" contenteditable="true">🔗 GitHub</a>
+                <a href="https://linkedin.com/in/votre-profil" target="_blank" class="editable" contenteditable="true">💼 LinkedIn</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="about">
+            <h2>À Propos</h2>
+            <div class="about-content editable" contenteditable="true">
+                <p>Passionné par l'informatique et actuellement en Master Informatique à l'Université d'Angers, je me spécialise dans la conception de compilateurs et le développement logiciel. Mon parcours académique et mes projets personnels m'ont permis de développer une expertise solide en C++, en théorie des langages de programmation et en architecture logicielle.</p>
+                <p>Je suis à la recherche d'un stage ou d'une alternance pour mettre en pratique mes compétences techniques, contribuer à des projets innovants et continuer à apprendre au sein d'une équipe dynamique. Ma rigueur, mon esprit analytique et ma passion pour la résolution de problèmes complexes sont des atouts que je souhaite apporter à votre organisation.</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Compétences Techniques</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Langages de Programmation</h3>
+                    <ul class="skill-list">
+                        <li class="editable" contenteditable="true">C++ (Avancé)</li>
+                        <li class="editable" contenteditable="true">Python</li>
+                        <li class="editable" contenteditable="true">Java</li>
+                        <li class="editable" contenteditable="true">Shell/Bash</li>
+                        <li class="editable" contenteditable="true">JavaScript</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Compilation & Théorie</h3>
+                    <ul class="skill-list">
+                        <li class="editable" contenteditable="true">Flex & Bison</li>
+                        <li class="editable" contenteditable="true">Analyse lexicale/syntaxique</li>
+                        <li class="editable" contenteditable="true">Génération de code</li>
+                        <li class="editable" contenteditable="true">Théorie des langages</li>
+                        <li class="editable" contenteditable="true">AST & Grammaires</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Outils & Technologies</h3>
+                    <ul class="skill-list">
+                        <li class="editable" contenteditable="true">Git/GitHub</li>
+                        <li class="editable" contenteditable="true">CMake</li>
+                        <li class="editable" contenteditable="true">Linux/Unix</li>
+                        <li class="editable" contenteditable="true">Qt Framework</li>
+                        <li class="editable" contenteditable="true">GDB/Debugging</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Soft Skills</h3>
+                    <ul class="skill-list">
+                        <li class="editable" contenteditable="true">Résolution de problèmes</li>
+                        <li class="editable" contenteditable="true">Travail en équipe</li>
+                        <li class="editable" contenteditable="true">Autonomie</li>
+                        <li class="editable" contenteditable="true">Rigueur & Méthodologie</li>
+                        <li class="editable" contenteditable="true">Apprentissage continu</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projets</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="editable" contenteditable="true">Compilateur de Langage Graphique</h3>
+                        <p class="project-type editable" contenteditable="true">Projet Académique - Master Informatique</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description editable" contenteditable="true">
+                            Développement d'un compilateur complet pour un langage de programmation graphique inspiré de Logo. Implémentation de l'analyse lexicale avec Flex, de l'analyse syntaxique avec Bison, et de la génération de code C++. Gestion de la hiérarchie de classes, des arbres de syntaxe abstraite et de l'optimisation du code généré.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">Flex</span>
+                            <span class="tech-tag">Bison</span>
+                            <span class="tech-tag">CMake</span>
+                            <span class="tech-tag">OOP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="editable" contenteditable="true">Analyseur de Code Source</h3>
+                        <p class="project-type editable" contenteditable="true">Projet Personnel</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description editable" contenteditable="true">
+                            Outil d'analyse statique de code capable d'identifier les patterns de conception, calculer les métriques de complexité et détecter les potentiels problèmes de performance. Interface en ligne de commande avec export de rapports détaillés.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">AST</span>
+                            <span class="tech-tag">CLI</span>
+                            <span class="tech-tag">Regex</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="editable" contenteditable="true">Gestionnaire de Tâches Collaboratif</h3>
+                        <p class="project-type editable" contenteditable="true">Projet Groupe</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description editable" contenteditable="true">
+                            Application web de gestion de projets avec système d'authentification, attribution de tâches, suivi en temps réel et génération de rapports. Architecture client-serveur avec API RESTful et base de données relationnelle.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">REST API</span>
+                            <span class="tech-tag">Git</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Formation</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date editable" contenteditable="true">2024 - 2026</div>
+                    <div class="timeline-title editable" contenteditable="true">Master Informatique (M_Info)</div>
+                    <div class="timeline-subtitle editable" contenteditable="true">Université d'Angers</div>
+                    <div class="timeline-description editable" contenteditable="true">
+                        Spécialisation en théorie des langages, compilation, architecture logicielle et développement avancé. Projet principal : conception et implémentation d'un compilateur complet pour langage de programmation graphique.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date editable" contenteditable="true">2021 - 2024</div>
+                    <div class="timeline-title editable" contenteditable="true">Licence Informatique</div>
+                    <div class="timeline-subtitle editable" contenteditable="true">Université d'Angers</div>
+                    <div class="timeline-description editable" contenteditable="true">
+                        Formation généraliste en informatique couvrant la programmation, les algorithmes, les bases de données, les réseaux et le développement web. Projet de fin d'études en développement d'application.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date editable" contenteditable="true">2018 - 2021</div>
+                    <div class="timeline-title editable" contenteditable="true">Baccalauréat Scientifique</div>
+                    <div class="timeline-subtitle editable" contenteditable="true">Lycée, France</div>
+                    <div class="timeline-description editable" contenteditable="true">
+                        Spécialité mathématiques et sciences de l'ingénieur. Mention Bien.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="cta-section">
+            <h2>Intéressé par mon profil ?</h2>
+            <p>Je suis actuellement à la recherche d'un stage ou d'une alternance.<br>N'hésitez pas à me contacter pour échanger sur vos opportunités !</p>
+            <a href="mailto:votre.email@example.com" class="btn">Me Contacter</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <span class="editable" contenteditable="true">Votre Nom</span> - Portfolio Professionnel</p>
+            <p style="margin-top: 10px; font-size: 14px;">📍 Paris, France</p>
+        </div>
+    </footer>
+
+    <script>
+        // Amélioration de l'expérience d'édition
+        document.querySelectorAll('.editable').forEach(element => {
+            element.addEventListener('focus', function() {
+                this.classList.add('edit-mode');
+            });
+
+            element.addEventListener('blur', function() {
+                this.classList.remove('edit-mode');
+            });
+
+            // Empêcher les sauts de ligne dans les éléments inline
+            element.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !this.classList.contains('about-content')) {
+                    e.preventDefault();
+                }
+            });
+        });
+
+        // Smooth scroll pour les ancres
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mise à jour des initiales
+        const nameElement = document.querySelector('h1.editable');
+        const profileImage = document.querySelector('.profile-image');
+        
+        nameElement.addEventListener('input', function() {
+            const name = this.textContent.trim();
+            const words = name.split(' ');
+            let initials = '';
+            
+            if (words.length > 0) {
+                initials = words[0][0] || '';
+                if (words.length > 1) {
+                    initials += words[words.length - 1][0] || '';
+                }
+            }
+            
+            profileImage.textContent = initials.toUpperCase();
+        });
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .timeline-item, .skill-category').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
